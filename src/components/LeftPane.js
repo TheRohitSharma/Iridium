@@ -48,15 +48,12 @@ export default class LeftPane extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps){
-    console.log(nextProps)
-  }
 
   render(){
     return(
       <MainContainer>
         <TextInput placeholder="http(s)://www.example.com" onChange={this.props.onChange} value={this.props.url} type="text"/>
-        <SubmitBtn onClick={this.props.onClick}>Save</SubmitBtn>
+        <SubmitBtn onClick={this.props.addItem}>Save</SubmitBtn>
       </MainContainer>
     );
   }

@@ -22,29 +22,39 @@ class App extends Component {
       items: []
     }
     this.onChange = this.onChange.bind(this);
-    this.onClick = this.onClick.bind(this);
+    this.addItem = this.addItem.bind(this);
+    this.removeItem = this.removeItem.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   onChange(url){
     this.setState({ url: url.target.value });
   }
 
-  onClick(){
-    items.push( {url: this.state.url, key: 0} );
+  addItem(){
+    if(this.state.url != '')
+    {
+    items.push( {url: this.state.url, id: (items.length) } );
     this.setState({ items, url: '' })
-
+  }
+  console.log(items)
   }
 
-  componentDidMount(){
-
+  removeItem(e){
+    items = items.filter((item) => {return item.id != e})
+    this.setState({items})
   }
 
+
+  handleDelete(e){
+    console.log(e);
+  }
 
   render() {
     return (
       <MainContainer>
-        <LeftPane onClick={this.onClick} onChange={this.onChange} url={this.state.url}  />
-        <Grid items={this.state.items} url={this.state.url} />
+        <LeftPane addItem={this.addItem} onChange={this.onChange} url={this.state.url}  />
+        <Grid removeItem={this.removeItem} getValue={this.getValue} items={this.state.items} url={this.state.url} />
       </MainContainer>
     );
   }

@@ -14,6 +14,8 @@ const MainContainer = styled.div`
 }
 `;
 
+
+
 export default class Grid extends Component {
 
   constructor(props){
@@ -21,25 +23,21 @@ export default class Grid extends Component {
     this.state = {
       items: []
     }
-    this.onClick = this.onClick.bind(this);
+    this.removeItem = this.removeItem.bind(this);
   }
 
-  onClick(e){
-    console.log(this.state.items);
-  }
+  removeItem(id){
+    this.props.removeItem(id)
+  };
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.items){
-      this.setState({ items: nextProps.items });
-    }
+    this.setState({items: nextProps.items})
   }
 
 
   render() {
-
-
-    const listItems = this.state.items.map((item, index) =>
-      <GridItem key={index} onClick={this.onClick} url={item.url}/>
+    let listItems = this.state.items.map((item, index) =>
+      <GridItem key={index} id={this.props.items[index].id} onClick={() => this.removeItem(this.props.items[index].id)} url={item.url}/>
     );
 
     return (

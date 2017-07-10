@@ -14,13 +14,11 @@ const Block = styled.div`
 
 export default class GridItem extends Component {
   render() {
-
     return (
-
-        <Block onClick={this.props.onClick}>
-        <a style={{textAlign: 'center', textDecoration: 'none'}} href={this.props.url}>
-          <img alt={this.props.url} src={`https://logo.clearbit.com/${this.props.url}`}/>
-          <p style={{fontSize: '1.4em', color:'gray'}}>{this.props.url}</p>
+        <Block id={this.props.id} onClick={this.props.onClick}>
+          <a style={{textAlign: 'center', textDecoration: 'none'}} href={this.props.url}>
+            <img alt={this.props.url} src={`https://logo.clearbit.com/${this.props.url}`}/>
+            <p style={{fontSize: '1.4em', color:'gray'}}>{this.props.url}</p>
           </a>
         </Block>
 
